@@ -4,7 +4,6 @@ from matplotlib import pyplot as plt
 
 ser = serial.Serial('/dev/tty.usbmodem14201', 9600, timeout=None)
 
-
 t = np.zeros(100)
 y = np.zeros(100)
 
@@ -21,8 +20,6 @@ tInt = float(data[0])
 
 while True:
     try:
-        #line = ser.readline()
-        #print(line)
         ser.write("*".encode())
         data = ser.readline().strip().rsplit()
         t = np.append(t, (float(data[0])-tInt)/10**6)
@@ -33,7 +30,6 @@ while True:
         li.set_xdata(t)
         li.set_ydata(y)
         plt.xlim(min(t), max(t))
-        # plt.draw()
         plt.pause(.01)
     except KeyboardInterrupt:
         ser.close()
