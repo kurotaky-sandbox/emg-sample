@@ -1,5 +1,7 @@
 import serial
 import numpy as np
+import csv
+from datetime import datetime
 from matplotlib import pyplot as plt
 
 ser = serial.Serial('/dev/tty.usbmodem14201', 9600, timeout=None)
@@ -17,15 +19,22 @@ plt.ylabel("Voltage[V]")
 ser.write("*".encode())
 data = ser.readline().strip().rsplit()
 tInt = float(data[0])
+filename = datetime.now().strftime("%Y%m%d-%H%M%S")
+f = open('output/%s.csv' % filename, 'w')
 
 while True:
     try:
         ser.write("*".encode())
         data = ser.readline().strip().rsplit()
-        t = np.append(t, (float(data[0])-tInt)/10**6)
+        time = (float(data[0]) - tInt) / 10**6
+        t = np.append(t, time)
         t = np.delete(t, 0)
-        y = np.append(y, float(data[1])*5/1023)
+        voltage = float(data[1])*3.3 / 1023
+        y = np.append(y, voltage)
         y = np.delete(y, 0)
+
+        writer = csv.writer(f, lineterminator='\n')
+        writer.writerow([time, voltage])
 
         li.set_xdata(t)
         li.set_ydata(y)
@@ -33,4 +42,5 @@ while True:
         plt.pause(.01)
     except KeyboardInterrupt:
         ser.close()
+        f.close()
         break
