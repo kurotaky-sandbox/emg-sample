@@ -13,7 +13,7 @@ void emgRead() {
 
 void setup() {
   Serial.begin(9600);
-  MsTimer2::set(100, emgRead);
+  MsTimer2::set(100, emgRead); // 100ms間隔で実行
   MsTimer2::start();
 }
 
