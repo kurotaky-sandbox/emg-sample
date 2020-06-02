@@ -4,7 +4,7 @@ import csv
 from datetime import datetime
 from matplotlib import pyplot as plt
 
-ser = serial.Serial('/dev/tty.usbmodem14201', 9600, timeout=None)
+ser = serial.Serial('/dev/tty.usbmodem14101', 9600, timeout=None)
 
 t = np.zeros(100)
 y = np.zeros(100)
@@ -29,7 +29,7 @@ while True:
         time = (float(data[0]) - tInt) / 10**6
         t = np.append(t, time)
         t = np.delete(t, 0)
-        voltage = float(data[1])*3.3 / 1023
+        voltage = float(data[1]) # * 5.0 / 1023
         y = np.append(y, voltage)
         y = np.delete(y, 0)
 

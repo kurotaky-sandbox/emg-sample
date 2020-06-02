@@ -6,7 +6,7 @@ void emgRead() {
   int value = analogRead(0);
   Serial.print(time);
   Serial.print(" ");
-  Serial.print(value);
+  Serial.print(value * 5.0 / 1023.0);
   Serial.print("\n");
   Serial.read();
 }
