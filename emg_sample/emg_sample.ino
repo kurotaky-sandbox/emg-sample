@@ -2,7 +2,7 @@
 
 void emgRead() {
   interrupts();
-  long time = micros();
+  long time = millis();
   int value = analogRead(0);
   Serial.print(time);
   Serial.print(" ");
@@ -12,8 +12,8 @@ void emgRead() {
 }
 
 void setup() {
-  Serial.begin(9600);
-  MsTimer2::set(100, emgRead); // 100ms間隔で実行
+  Serial.begin(115200);
+  MsTimer2::set(10, emgRead); // 10ms間隔で実行
   MsTimer2::start();
 }
 
