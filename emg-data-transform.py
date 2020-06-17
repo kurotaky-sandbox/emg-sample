@@ -3,7 +3,7 @@ import seaborn as sns
 import pandas as pd
 import csv
 
-df = pd.read_csv('output/20200616-203813.csv')
+df = pd.read_csv('testdata/20200616-203813.csv')
 df.columns = ["time", "voltage"]
 print(df.head())
 
