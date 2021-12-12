@@ -15,11 +15,14 @@ while True:
         ser.write("*".encode())
         data = ser.readline().strip().rsplit()
         time = (float(data[0]) - tInt) # / 10**6
-        voltage = float(data[1]) # * 5.0 / 1023
+        voltage = float(data[1])
+        #voltage2 = float(data[2])
+        #print(time, voltage, voltage2)
         print(time, voltage)
         writer = csv.writer(f, lineterminator='\n')
+        #writer.writerow([time, voltage, voltage2])
         writer.writerow([time, voltage])
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:  # Ctr + C
         ser.close()
         f.close()
         break

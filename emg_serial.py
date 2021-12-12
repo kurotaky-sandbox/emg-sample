@@ -33,13 +33,13 @@ while True:
         y = np.append(y, voltage)
         y = np.delete(y, 0)
 
-        writer = csv.writer(f, lineterminator='\n')
-        writer.writerow([time, voltage])
+        #writer = csv.writer(f, lineterminator='\n')
+        #writer.writerow([time, voltage])
 
         li.set_xdata(t)
         li.set_ydata(y)
         plt.xlim(min(t), max(t))
-        plt.pause(.01)
+        plt.pause(0.001) # 0.001sec
     except KeyboardInterrupt:
         ser.close()
         f.close()
