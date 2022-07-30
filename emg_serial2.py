@@ -3,7 +3,7 @@ import numpy as np
 import csv
 from datetime import datetime
 
-ser = serial.Serial('/dev/tty.usbmodem14101', 115200, timeout=None)
+ser = serial.Serial('/dev/tty.usbmodem1101', 115200, timeout=None)
 ser.write("*".encode())
 data = ser.readline().strip().rsplit()
 tInt = float(data[0])

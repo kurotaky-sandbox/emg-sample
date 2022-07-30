@@ -13,6 +13,14 @@ open emg_sample/emg_sample.ino
 ```
 
 ### plotting data
+
+Library install
+```
+pip install pyserial
+pip install numpy
+```
+
+Run
 ```
 python emg-serial.py
 ```
