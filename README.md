@@ -4,6 +4,10 @@ Arduino send to serial port and processing with python programm, then plot senso
 
 ## Usage
 ### Arduino sketch
+
+1. MsTimer2.zip をダウンロード
+2. 「スケッチ」→「ライブラリをインクルード」→「.ZIP形式のライブラリをインストール」をクリック
+3. ダウンロードしたファイルを選択しインストール
 ```
 open emg_sample/emg_sample.ino
 ```
