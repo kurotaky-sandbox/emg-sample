@@ -16,12 +16,12 @@ while True:
         data = ser.readline().strip().rsplit()
         time = (float(data[0]) - tInt) # / 10**6
         voltage = float(data[1])
-        #voltage2 = float(data[2])
-        #print(time, voltage, voltage2)
-        print(time, voltage)
+        voltage2 = float(data[2])
+        voltage3 = float(data[3])
+        button = int(data[4])
+        print(time, voltage, voltage2, voltage3, button)
         writer = csv.writer(f, lineterminator='\n')
-        #writer.writerow([time, voltage, voltage2])
-        writer.writerow([time, voltage])
+        writer.writerow([time, voltage, voltage2, voltage3, button])
     except KeyboardInterrupt:  # Ctr + C
         ser.close()
         f.close()
