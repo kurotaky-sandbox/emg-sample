@@ -22,7 +22,7 @@ void setup()
   frameRate(300);
 
   cp5 = new ControlP5(this);
-  
+
   // グラフ設定
   chart_emg1 = cp5.addChart("ch1");
   chart_emg1.setView(Chart.LINE)                             /* グラフの種類（折れ線グラフ） */
@@ -54,18 +54,39 @@ void setup()
            .getColor().setBackground(color(224, 224, 224));  /* グラフの背景色を設定する */
   
   
-  setupChartAttr(chart_emg3, "ch3", color(0, 192, 0));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      setupChartAttr(chart_emg3, "ch3", color(0, 192, 0));
 }
 
 void serialEvent(Serial myPort) { 
-   String mystring = myPort.readStringUntil('\n');
-   if (mystring != null) {
-       //println(mystring);
-       mystring = trim(mystring);
-       SensorData s_data = new SensorData();
-       s_data.setPacket(float(split(mystring, ",")));
-       m_sensor_data = s_data;
-   }
+    try {
+        String mystring = myPort.readStringUntil('\n');
+        float mtime =  float(millis()); //float(ms); 
+
+        if (mystring != null) {
+            mystring = trim(mystring);
+            int value1 = unhex(mystring.substring(0, 3));
+            int value2 = unhex(mystring.substring(3, 6));
+            int value3 = unhex(mystring.substring(6, 9));
+            //int ms = unhex(mystring.substring(9, 13));
+                 
+            float v1 = value1 * 3.3 / 1023;
+            float v2 = value2 * 3.3 / 1023;
+            float v3 = value3 * 3.3 / 1023;
+         
+            float[] data =  new float[4];
+            data[0] = mtime;
+            data[1] = v1;
+            data[2] = v2;
+            data[3] = v3;
+         
+            SensorData s_data = new SensorData();
+            s_data.setPacket(data);
+            m_sensor_data = s_data;
+            file.println(m_sensor_data.time + "," + m_sensor_data.ch1 + "," + m_sensor_data.ch2 + "," + m_sensor_data.ch3);
+        }
+    } catch(Exception e) {
+         e.printStackTrace();
+    }
 }
 
 void draw()
@@ -81,7 +102,6 @@ void draw()
     textSize(22);
     textAlign(CENTER);
     text("time: " + m_sensor_data.time, 100, 35);
-    file.println(m_sensor_data.time + "," + m_sensor_data.ch1 + "," + m_sensor_data.ch2 + "," + m_sensor_data.ch3);
   }
 }
 
