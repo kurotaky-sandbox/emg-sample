@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import numpy as np
 import tensorflow as tf
 import librosa
+import random
 
 app = Flask(__name__)
 
@@ -27,11 +28,14 @@ def process_data():
     # Convert predictions to labels (assuming a classification task)
     # labels = np.argmax(predictions, axis=1)
 
+    # リストからランダムに選ばれるようにする
+    possible_results = ["start", "on", "off", "two"]
 
-    # ここで判定結果を返す
+    # ランダムに選んだ結果を返す
     response = {
-        "result": "start"
+        "result": random.choice(possible_results)
     }
+
     print(sensor_data)
     
     return jsonify(response)
