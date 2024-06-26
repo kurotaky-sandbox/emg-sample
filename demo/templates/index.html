@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMGデータ可視化</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>EMGデータ可視化</h1>
+    <div id="chart"></div>
+    <script>
+        async function fetchData() {
+            const response = await fetch('/data');
+            const graphJson = await response.json();
+            Plotly.react('chart', graphJson.data, graphJson.layout);
+        }
+        setInterval(fetchData, 10);  // 0.01秒ごとにデータを取得
+        fetchData();  // 初回のデータ取得
+    </script>
+</body>
+</html>
+
