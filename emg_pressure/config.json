@@ -1,0 +1,12 @@
+{
+  "serial_port": "/dev/tty.usbmodem101",
+  "baud_rate": 115200,
+  "http_port": 8081,
+  "ws_port": 8766,
+  "voltage_reference": 3.3,
+  "adc_resolution": 1023,
+  "num_channels": 2,
+  "output_dir": "output",
+  "fsr_vcc": 3.3,
+  "fsr_reference_resistor": 10000
+}

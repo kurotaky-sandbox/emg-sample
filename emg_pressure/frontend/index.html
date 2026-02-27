@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMG + Pressure Sensor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>EMG + Pressure Sensor</h1>
+    <div class="status-bar">
+      <span id="connection-status" class="status disconnected">Disconnected</span>
+      <span id="sample-rate">0 Hz</span>
+    </div>
+  </div>
+
+  <div class="controls-bar">
+    <div class="controls">
+      <button id="btn-start" disabled>Start Recording</button>
+      <button id="btn-stop" disabled>Stop Recording</button>
+      <span id="recording-status"></span>
+    </div>
+    <div id="elapsed-time" class="elapsed-time">00:00:00.000</div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-container">
+      <div class="chart-label">
+        <span class="channel-name emg-color">EMG (筋電位)</span>
+        <span id="voltage-emg" class="voltage-value">0.000 V</span>
+      </div>
+      <canvas id="chart-emg"></canvas>
+    </div>
+    <div class="chart-container">
+      <div class="chart-label">
+        <span class="channel-name pressure-color">Pressure (圧力センサー)</span>
+        <span class="pressure-values">
+          <span id="raw-pressure" class="voltage-value">raw: 0</span>
+          <span id="voltage-pressure" class="voltage-value">0.000 V</span>
+          <span id="force-pressure" class="voltage-value force-value">0.00 N</span>
+        </span>
+      </div>
+      <canvas id="chart-pressure"></canvas>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
