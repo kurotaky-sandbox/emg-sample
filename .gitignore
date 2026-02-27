@@ -2,3 +2,8 @@
 output/*
 !output/20200603-024110-a.csv
 !output/20200603-024336-i.csv
+
+__pycache__/
+*.pyc
+venv/
+.venv/

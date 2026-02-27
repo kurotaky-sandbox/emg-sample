@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMG 4ch Silent Speech Data Collection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>EMG 4ch Silent Speech</h1>
+    <div class="status-bar">
+      <span id="connection-status" class="status disconnected">Disconnected</span>
+      <span id="sample-rate">0 Hz</span>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <div class="left-panel">
+
+      <!-- Experiment Setup (shown when no experiment is active) -->
+      <div id="experiment-setup" class="panel-section">
+        <div class="subject-input">
+          <label for="subject-id">Subject ID</label>
+          <input type="text" id="subject-id" placeholder="e.g. S01" maxlength="20">
+        </div>
+        <button id="btn-new-experiment" disabled>New Experiment</button>
+        <div id="experiment-list"></div>
+      </div>
+
+      <!-- Experiment Running (shown during experiment) -->
+      <div id="experiment-running" class="panel-section" style="display:none;">
+        <div id="exp-subject-label" class="exp-subject-label"></div>
+        <div class="experiment-progress">
+          <span id="exp-word-progress">Word 0/30</span>
+          <span id="exp-trial-progress">Trial 0/30</span>
+        </div>
+        <div id="exp-cue" class="experiment-cue">
+          <div id="exp-phase" class="exp-phase"></div>
+          <div id="exp-word" class="exp-word"></div>
+          <div id="exp-countdown" class="exp-countdown"></div>
+        </div>
+        <div class="experiment-controls">
+          <button id="btn-pause">Pause</button>
+          <button id="btn-skip-word">Skip Word</button>
+          <button id="btn-end-experiment">End</button>
+        </div>
+        <div id="exp-total-progress" class="exp-total-progress"></div>
+      </div>
+
+      <!-- Manual Recording (always visible at bottom) -->
+      <div class="panel-section manual-section">
+        <div class="section-label">Manual Recording</div>
+        <div class="controls">
+          <button id="btn-start" disabled>Start</button>
+          <button id="btn-stop" disabled>Stop</button>
+        </div>
+        <span id="recording-status"></span>
+        <div id="elapsed-time" class="elapsed-time">00:00:00.000</div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="chart-container">
+        <div class="chart-label">
+          <span class="channel-name ch1-color">CH1 Buccinator (頬筋)</span>
+          <span id="voltage-ch1" class="voltage-value">0.000 V</span>
+        </div>
+        <canvas id="chart-ch1"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="chart-label">
+          <span class="channel-name ch2-color">CH2 Orbicularis Oris (口輪筋)</span>
+          <span id="voltage-ch2" class="voltage-value">0.000 V</span>
+        </div>
+        <canvas id="chart-ch2"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="chart-label">
+          <span class="channel-name ch3-color">CH3 Depressor Labii Inf. (下唇下制筋)</span>
+          <span id="voltage-ch3" class="voltage-value">0.000 V</span>
+        </div>
+        <canvas id="chart-ch3"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="chart-label">
+          <span class="channel-name ch4-color">CH4 Mentalis (オトガイ筋)</span>
+          <span id="voltage-ch4" class="voltage-value">0.000 V</span>
+        </div>
+        <canvas id="chart-ch4"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
